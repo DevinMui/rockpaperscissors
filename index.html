@@ -7,10 +7,19 @@
             integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
             crossorigin="anonymous">
         </script>
+        <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+        <style type="text/css">
+            
+            body {
+                font-family: "Raleway";
+                color: #ba68c8;
+            }
+
+        </style>
     </head>
     <body>
-        <p>Points: <span id="points">0</span> | <span id="compPoints">0</span></p>
-        <p id="text"></p>
+        <h1 id="text"></h1>
+        <h3>Points: <span id="points">0</span> | <span id="compPoints">0</span></h3>
         <div id="contain">
             <img id="rock" src="images/rock.jpg">
             <img id="paper" src="images/paper.jpg">
@@ -19,6 +28,9 @@
         <img id="compRock" src="images/rock.jpg">
         <img id="compPaper" src="images/paper.jpg">
         <img id="compScissor" src="images/scissor.jpg">
+        <audio loop id="audio">
+            <source src="illuminati.mp3" type="audio/mp3">
+        </audio>
         <script src="game.js"></script>
     </body>
 </html>

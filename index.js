@@ -13,13 +13,14 @@ app.get('/', function(req, res){
 })
 
 io.on('connection', function(socket){
-    console.log('a user connected');
+    //console.log('a user connected');
     crypto.randomBytes(48, function(err, buffer) {
   		var token = buffer.toString('hex');
   		io.emit('id', token) // emit to all users
 	})
 
 	socket.on('message', function(msg){
+		console.log(msg)
 		io.emit('message', msg)
 	})
 });

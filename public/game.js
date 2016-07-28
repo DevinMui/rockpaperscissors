@@ -25,9 +25,9 @@ socket.on('message', function(data){
 	var choice = data[1] // gets the choice of user
 	if(player != client){
 		other = choice
-		if(picked){
-			checkForWinner(pick, other)
-		}
+	}
+	if(picked){
+		checkForWinner(pick, other)
 	}
 })
 

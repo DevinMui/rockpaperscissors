@@ -69,7 +69,7 @@ $('#compPaper').hide()
 $('#compScissor').hide()
 
 var checkForWinner = function(choice, choice_2){
-	if(points < 1 && compPoints < 1){
+	if(points < 3 && compPoints < 3){
 		// show what player picked
 		$('#text').text("Player has chosen")
 		$('#comp' + choice_2.charAt(0).toUpperCase() + choice_2.slice(1)).show()
@@ -122,7 +122,7 @@ var checkForWinner = function(choice, choice_2){
 			other = undefined
 			$('#comp' + choice_2.charAt(0).toUpperCase() + choice_2.slice(1)).hide()
 		}, 1500)
-	} else if(points >= 1){
+	} else if(points >= 3){
 		$('#contain').hide()
 
 		$('body').css('background-image', 'url(images/firework.gif)')

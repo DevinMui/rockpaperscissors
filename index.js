@@ -9,7 +9,15 @@ var io = socketio.listen(server)
 app.use(express.static('public'))
 
 app.get('/', function(req, res){
-    res.sendfile('index.html')    
+    res.sendfile('load.html')    
+})
+
+app.get('/game', function(req, res){
+	res.sendfile('index.html')
+})
+
+app.get('/instructions', function(req, res){
+	res.sendfile('instructions.html')
 })
 
 io.on('connection', function(socket){

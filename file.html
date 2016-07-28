@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>sdlkashf;l</title>
+</head>
+<body>
+	<img id="img" src="public/images/scissor.jpg">
+	<script>
+		var img = document.getElementById("img")
+		var i = 0
+		var arr = ["public/images/paper.jpg", "public/images/rock.jpg", "public/images/scissor.jpg"]
+		setInterval(function(){
+			img.src = arr[i]
+			if(i === 2){
+				i = 0
+			} else {
+				i++
+			}
+		}, 5000)
+	</script>
+</body>
+</html>

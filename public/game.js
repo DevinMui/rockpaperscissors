@@ -10,7 +10,7 @@ var other;
 var socket = io.connect()
 
 var client;
-console.log(client)
+console.log(pick)
 
 socket.on('id', function(data){
 	if(client === undefined){
@@ -68,7 +68,6 @@ $('#compRock').hide()
 $('#compPaper').hide()
 $('#compScissor').hide()
 
-
 var checkForWinner = function(choice, choice_2){
 	if(points < 1 && compPoints < 1){
 		// show what player picked
@@ -118,20 +117,21 @@ var checkForWinner = function(choice, choice_2){
 			$('#contain').show()
 			$('#points').text(points)
 			$('#compPoints').text(compPoints)
+			picked = false
+			pick = undefined
+			other = undefined
 			$('#comp' + choice_2.charAt(0).toUpperCase() + choice_2.slice(1)).hide()
 		}, 1500)
 	} else if(points >= 1){
-		$('#rock').hide()
-		$('#paper').hide()
-		$('#scissor').hide()
+		$('#contain').hide()
+
 		$('body').css('background-image', 'url(images/firework.gif)')
 		var audio = document.getElementById("audio")
 		audio.play()
-		$('#replay').show()
+		//$('#replay').show()
 	} else {
-		$('#rock').hide()
-		$('#paper').hide()
-		$('#scissor').hide()
+		$('#contain').hide()
+
 		window.location = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
 	}
 }

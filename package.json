@@ -1,0 +1,25 @@
+{
+  "name": "rockpaperscissor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "game.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DevinMui/rockpaperscissors.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DevinMui/rockpaperscissors/issues"
+  },
+  "homepage": "https://github.com/DevinMui/rockpaperscissors#readme",
+  "dependencies": {
+    "crypto": "0.0.3",
+    "express": "^4.14.0",
+    "http": "0.0.0",
+    "socket.io": "^1.4.8"
+  }
+}

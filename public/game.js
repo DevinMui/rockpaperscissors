@@ -1,15 +1,65 @@
+/*
+ *
+ * Server side code for multiplayer
+ *
+ */ 
+var picked = false
+var pick;
+var other;
+
+var socket = io.connect()
+
+var client;
+console.log(client)
+
+socket.on('id', function(data){
+	if(client === undefined){
+		client = data
+	}
+})
+
+socket.on('message', function(data){
+	console.log(data)
+	var data = data.split(" ") 
+	var player = data[0] // gets the id of user
+	var choice = data[1] // gets the choice of user
+	if(player != client){
+		other = choice
+		if(picked){
+			checkForWinner(pick, other)
+		}
+	}
+})
+
+/*
+ *
+ * Client side code for normal play
+ *
+ */
+
 $("#rock").click(function(){
-	checkForWinner("rock")
+	pick = "rock"
+	picked = true
+	$('#contain').hide()
+	socket.emit('message', client + " " + pick)
 })
 
 
 $("#paper").click(function(){
-	checkForWinner("paper")
+	pick = "paper"
+	picked = true
+	$('#contain').hide()
+	socket.emit('message', client + " " + pick)
 })
 
 $("#scissor").click(function(){
-	checkForWinner("scissor")
+	pick = "scissor"
+	picked = true
+	$('#contain').hide()
+	socket.emit('message', client + " " + pick)
 })
+
+$('#replay').hide()
 
 var points = 0
 var compPoints = 0
@@ -18,17 +68,14 @@ $('#compRock').hide()
 $('#compPaper').hide()
 $('#compScissor').hide()
 
-var checkForWinner = function(choice){
+
+var checkForWinner = function(choice, choice_2){
 	if(points < 1 && compPoints < 1){
-		var rand =  Math.floor((Math.random() * 3) + 0)
-		var compPicks = ["rock", "paper", "scissor"]
-		var compPick = compPicks[rand] // chooses r, p, or s
-		// show what computer picked
-		$('#contain').hide()
-		$('#text').text("Computer has chosen")
-		$('#comp' + compPick.charAt(0).toUpperCase() + compPick.slice(1)).show()
+		// show what player picked
+		$('#text').text("Player has chosen")
+		$('#comp' + choice_2.charAt(0).toUpperCase() + choice_2.slice(1)).show()
 		setTimeout(function(){
-			if(compPick === "rock"){
+			if(choice_2 === "rock"){
 				if(choice === "paper"){
 					// you win
 					$('#text').text("You win")
@@ -41,7 +88,7 @@ var checkForWinner = function(choice){
 					// tie
 					$('#text').text("Tie")
 				}
-			} else if(compPick === "paper"){
+			} else if(choice_2 === "paper"){
 				if(choice === "scissor"){
 					// you lose
 					$('#text').text("You win")
@@ -71,7 +118,7 @@ var checkForWinner = function(choice){
 			$('#contain').show()
 			$('#points').text(points)
 			$('#compPoints').text(compPoints)
-			$('#comp' + compPick.charAt(0).toUpperCase() + compPick.slice(1)).hide()
+			$('#comp' + choice_2.charAt(0).toUpperCase() + choice_2.slice(1)).hide()
 		}, 1500)
 	} else if(points >= 1){
 		$('#rock').hide()
@@ -80,6 +127,7 @@ var checkForWinner = function(choice){
 		$('body').css('background-image', 'url(images/firework.gif)')
 		var audio = document.getElementById("audio")
 		audio.play()
+		$('#replay').show()
 	} else {
 		$('#rock').hide()
 		$('#paper').hide()
@@ -87,3 +135,7 @@ var checkForWinner = function(choice){
 		window.location = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
 	}
 }
+
+$('#replay').click(function(){
+	location.reload()
+})
